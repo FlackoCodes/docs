@@ -1,4 +1,131 @@
 ---
-title: 'Create Plant'
-openapi: 'POST /plants'
+title: "List Business"
+openapi: "GET /{BASE_URL}/v1/users/{parameters}"
+description: "This endpoint lists all businesses or vendors created"
 ---
+
+Lists all businesses registered on the Cleva platform.  
+This endpoint accepts the required parameters for authorization and returns a list of all vendors upon a successful request (`200 OK`).  
+A valid Bearer Token must be included in the `Authorization` header to access this endpoint.
+
+### Request Params
+
+| Field    | parameter |
+| -------- | --------- |
+| isActive | true      |
+| page     | 1         |
+| size     | 15        |
+| filters  | BUSINESS  |
+
+---
+
+---
+
+### Example Request
+
+```curl
+{BASE_URL/v1/users/{parameters}}
+```
+
+```
+{
+  "statusCode": 200,
+  "statusMessage": "All BUSINESS details listed successfully",
+  "transactionId": "8cba4ec8-a4c9-4b76-8f7a-cbe2113eeab9",
+  "sequenceNo": "CLV-01HMVXJP5ZVD2TE9BGCHZY4STZ",
+  "data": {
+    "docs": [
+      {
+        "_id": "65afa57ae931a55d4765950e",
+        "name": "Golden LIMITED",
+        "type": "VENDOR",
+        "slug": "golden-limited",
+        "registrationNumber": "090909",
+        "user": {
+          "_id": "65afa57ae931a55d47659510",
+          "firstName": "Ford",
+          "lastName": "Fun",
+          "fullName": "Ford Fun",
+          "username": null,
+          "phoneNumber": "+233242121212",
+          "userType": "BUSINESS",
+          "scope": [
+            "EVB202301001",
+            "PAYB202301001"
+          ],
+          "slug": "ford-fun",
+          "isActive": true,
+          "setUpStatus": "COMPLETED",
+          "isAccountActive": true,
+          "isAccountBlocked": false,
+          "createdAt": "2024-01-23T11:39:38.651Z",
+          "updatedAt": "2024-01-23T11:40:06.046Z"
+        }
+      },
+      {
+        "_id": "65afa261e931a55d476594ee",
+        "name": "MIlli Limited",
+        "type": "VENDOR",
+        "slug": "milli-limited",
+        "registrationNumber": "120001",
+        "user": {
+          "_id": "65afa261e931a55d476594f0",
+          "firstName": "Milli",
+          "lastName": "Jones",
+          "fullName": "Milli Jones",
+          "username": null,
+          "phoneNumber": "+233244536183",
+          "userType": "BUSINESS",
+          "scope": [
+            "EVB202301001",
+            "PAYB202301001"
+          ],
+          "slug": "milli-jones",
+          "isActive": true,
+          "setUpStatus": "COMPLETED",
+          "isAccountActive": true,
+          "isAccountBlocked": false,
+          "createdAt": "2024-01-23T11:26:25.234Z",
+          "updatedAt": "2024-01-23T11:27:05.159Z"
+        }
+      },
+      {
+        "_id": "65a979c5e931a55d476594ac",
+        "name": "Cleva Incorporation",
+        "type": "VENDOR",
+        "slug": "cleva-incorporation",
+        "registrationNumber": "GH-020993003-029",
+        "user": {
+          "_id": "65a979c5e931a55d476594ae",
+          "firstName": "Kay",
+          "lastName": "BAnks",
+          "fullName": "Kay BAnks",
+          "username": null,
+          "phoneNumber": "0207467642",
+          "userType": "BUSINESS",
+          "scope": [
+            "EVB202301001",
+            "PAYB202301001"
+          ],
+          "slug": "kay-banks",
+          "isActive": true,
+          "setUpStatus": "COMPLETED",
+          "isAccountActive": true,
+          "isAccountBlocked": false,
+          "createdAt": "2024-01-18T19:19:33.292Z",
+          "updatedAt": "2024-01-18T19:21:19.338Z"
+        }
+      }
+    ],
+    "totalDocs": 3,
+    "page": 1,
+    "totalPages": 1,
+    "hasPrevPage": false,
+    "hasNextPage": false,
+    "limit": 15,
+    "offset": 0
+  },
+  "timestamp": "2024-01-23T19:43:27.423Z"
+}
+
+```

@@ -1,6 +1,10 @@
 ---
-title: Introduction
-description: "Welcome to the home of your new documentation"
+title: Cleva Auth Endpoint
+description: "This endpoint registers a new user in the Cleva platform.
+It collects personal or business details, validates the provided information (such as a Ghana Card number), and creates a user account.
+Upon successful registration, the API responds with an access token that can be used to authenticate future requests.
+Supports JSON payloads and returns standard HTTP status codes for both success and error handling.
+"
 ---
 
 <img
@@ -19,6 +23,17 @@ description: "Welcome to the home of your new documentation"
 The first step to world-class documentation is setting up your editing environments.
 
 <CardGroup cols={2}>
+
+{" "}
+
+<Card
+  title="Authentication Endpoint"
+  icon="lock"
+  href="./api-reference/endpoint/auth.mdx"
+>
+  Register users and obtain access tokens for authenticated API requests.
+</Card>
+
   <Card
     title="Edit Your Docs"
     icon="pen-to-square"
