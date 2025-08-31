@@ -1,4 +1,106 @@
 ---
-title: "Register Business"
-openapi: "POST /"
+title: "Createt a product"
+openapi: "POST  /{BASE_URL}/v1/shops/products"
+descripttion: "This endpoint creates a new shop under products"
 ---
+
+### POST /{BASE_URl}/v1/shops/products
+
+## Authorization
+This request  uses   `<Bearer_Token>` from the register API collection.
+
+
+### Request Body
+
+| Field           | Type   | Required | Description  / e.g              |
+| --------------- | ------ | -------- | ------------------------------- |
+| name            | string | Yes      | User's name                     |
+| description     | string | Yes      | product description             |
+| categories      | Array  | Yes      | Product categories (e.g., ["Fashion"])|
+| bannerUrl       | string | Yes      | Main product image URL          |
+|gallery          | Array  | Yes      | [https://www.istockphoto.com/stock-photos] |
+| stockQuantity   | number | Yes      | Number of  items in stcok       |
+| price           | number  | Yes     | Product price                   |
+| discount        | string | No       | Discount Value                  |
+| currency        | string | Yes      | Currency Code e.g (CAD)         |
+| slug            | string | Yes      | casio-f91                       |
+| features        | string | Yes      |  Array of feature IDs           |
+| isPublished     | Boolean|    Yes   |  true                           |
+
+
+
+
+### Example Request
+
+``` json
+curl --location  `{BASE_URL}}/v1/shops/products' \
+--data '{
+    "name": "Kaftan",
+    "description": "This is a nice kaftan",
+    "categories": [
+        "CLOTHS",
+        "SHOES"
+    ],
+    "brand": "655fb74efb9fd0d19753b318",
+    "bannerUrl": "https://res.cloudinary.com/lolll/image.png",
+    "gallery": [
+        "https://res.cloudinary.com/lolll/image.png"
+    ],
+    "stockQuantity": 10,
+    "price": 10,
+    "discount": 10,
+    "currency": "GHS",
+    "features": [
+        "655fb74efb9fd0d19753b318"
+    ],
+    "isPublished": true
+}'
+
+```
+
+### Example Response
+```json
+{
+  "statusCode": 201,
+  "statusMessage": "Product details successfully created",
+  "transactionId": "57e527e5-523f-4c34-b217-06fab3024e76",
+  "sequenceNo": "CLV-01HNFVJ0GFSNHKF3HAW6EZPV10",
+  "data": {
+    "name": "Kaftan",
+    "description": "This is a nice kaftan",
+    "categories": [
+      "CLOTHS",
+      "SHOES"
+    ],
+    "brand": "655fb74efb9fd0d19753b318",
+    "bannerUrl": "https://res.cloudinary.com/lolll/image.png",
+    "gallery": [
+      "https://res.cloudinary.com/lolll/image.png"
+    ],
+    "stockQuantity": 10,
+    "price": 10,
+    "discount": 10,
+    "discountedPrice": 9,
+    "currency": "GHS",
+    "businessId": null,
+    "userId": null,
+    "features": [
+      "655fb74efb9fd0d19753b318"
+    ],
+    "deletedAt": null,
+    "isPublished": true,
+    "_id": "65ba4c0899afab851f903571",
+    "slug": "kaftan",
+    "createdAt": "2024-01-31T13:32:56.479Z",
+    "updatedAt": "2024-01-31T13:32:56.479Z",
+    "__v": 0
+  },
+  "timestamp": "2024-01-31T13:32:56.719Z"
+}
+```
+
+### Status Codes
+- `200 OK` - Product created successfully
+- `400 Bad Request` - Invalid input
+- `401 Unauthorized` - Missing or invalid token
+- `404 Not Found` - Not found
