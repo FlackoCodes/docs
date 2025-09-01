@@ -1,27 +1,17 @@
 ---
 title: Authentication
+openapi : "POST / {BASE_URL}/v1/events/tickets"
+description : "This endpoint creates a ticket under events registered under and events"
 ---
 
-# Authentication Endpoints
+# Authentication 
 
-This section covers endpoints related to user authentication for businesses.
-
----
-
-## Authorization
-
-All authenticated endpoints require a **Bearer Token** in the `Authorization` header.
-
-You obtain this token by successfully registering or logging in via the relevant authentication endpoints.  
-Include the token in your requests as follows:
+This request  uses   `<Bearer_Token>` from the register API collection.
 
 ---
 
 ### POST `{BASE_URL}/auth/register`
 
-Registers a new user in the Cleva platform.  
-It accepts personal information, validates identity (via Ghana Card number), and returns an access token on success.  
-This token must be used as a Bearer Token in the Authorization header for all subsequent authenticated API requests.
 
 ---
 
@@ -29,41 +19,54 @@ This token must be used as a Bearer Token in the Authorization header for all su
 
 | Field           | Type   | Required | Description                     |
 | --------------- | ------ | -------- | ------------------------------- |
-| firstName       | string | Yes      | User's first name               |
-| lastName        | string | Yes      | User's last name                |
-| ghanaCardNumber | string | Yes      | Unique Ghana Card number        |
-| phoneNumber     | string | Yes      | User's phone number             |
-| userType        | string | Yes      | Either "PERSONAL" or "BUSINESS" |
+| name            | string | Yes      |  Flacko's tech meet up             |
+| status          | string | Yes      |  Active                |
+| description     | string | Yes      |  Meet up with the tech bros        |
+| posterUrl       | string | Yes      |  [image]             |
+| price           | string | Yes      |  20  |
+| discount        | string | Yes      |  5        |
+| type            | string | Yes      | Either "PERSONAL" or "BUSINESS" |
+
 
 ---
 
 ### Example Request
+```json
+curl --location '{BASE_URL}v1/events/tickets' \
+--data '{
+    "name": "A ticket",
+    "status": "ACTIVE",
+    "description": "A sample ticket",
+    "validStartDateTime": "2022-01-01T11:23:23Z",
+    "eventId": "652590681d18ddb9847ad3ac"
+}'
+```
+
+
+### Request body
 
 ```json
 {
-  "firstName": "Lord",
-  "lastName": "Banks",
-  "ghanaCardNumber": "48883993883",
-  "phoneNumber": "0207467647",
-  "userType": "PERSONAL"
-}
-```
-
-```
-{
   "statusCode": 201,
-  "statusMessage": "User registered successfully",
-  "transactionId": "01JXXXYZ...ABC",
+  "statusMessage": "Ticket successfully created",
+  "transactionId": "8f810180-3730-484e-a31c-4666e3652b56",
+  "sequenceNo": "CLV-01HERNV9YP5ZY2WCPSFVW2R588",
   "data": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5...",
-    "user": {
-      "id": "u_123456789",
-      "firstName": "Lord",
-      "lastName": "Banks",
-      "userType": "PERSONAL"
-    }
+    "status": "ACTIVE",
+    "name": "A ticket",
+    "slug": "a-ticket",
+    "description": "A sample ticket",
+    "validStartDateTime": "2022-01-01T11:23:23.000Z",
+    "validEndDateTime": null,
+    "posterUrl": "",
+    "totalQuantity": 0,
+    "quantityLeft": 0,
+    "eventId": "652590681d18ddb9847ad3ac",
+    "_id": "654c202a1a4939526e2571f9",
+    "createdAt": "2023-11-08T23:56:26.954Z",
+    "updatedAt": "2023-11-08T23:56:26.954Z",
+    "__v": 0
   },
-  "timestamp": "2025-08-24T12:34:56.789Z"
+  "timestamp": "2023-11-08T23:56:26.966Z"
 }
-
 ```
